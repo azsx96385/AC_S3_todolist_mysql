@@ -15,11 +15,11 @@ app.listen(process.env.PORT || 3000, () => {
 });
 
 //session
-app.use(session({ key: "okokok" }));
+app.use(session({ secret: "okokok" }));
 
 //handle bars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view egine", "handlebars");
+app.set("view engine", "handlebars");
 
 //body-parser
 app.use(bdParser.urlencoded({ extended: true }));
@@ -28,3 +28,24 @@ app.use(bdParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 //路由區
+//[首頁路由]-------------------------------------
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
+//[註冊登入路由]-------------------------------------
+
+//註冊
+app.get("/users/register", (req, res) => {
+  res.render("register");
+});
+app.post("/users/register", (req, res) => {});
+
+//登入
+app.get("/users/login", (req, res) => {
+  res.render("login");
+});
+app.post("/users/login", (req, res) => {});
+
+//登出
+app.get("/users/logout", (req, res) => {});
