@@ -6,12 +6,18 @@ const bdParser = require("body-parser");
 const methodOverride = require("method-override");
 const passport = require("passport");
 
+// 載入 model
+const db = require("./models");
+const Todo = db.Todo;
+const User = db.User;
+
 //設定套件
 
 //express
 const app = express();
 app.listen(process.env.PORT || 3000, () => {
-  console.log("server connected");
+  db.sequelize.sync();
+  console.log("App is running");
 });
 
 //session
@@ -39,8 +45,13 @@ app.get("/", (req, res) => {
 app.get("/users/register", (req, res) => {
   res.render("register");
 });
-app.post("/users/register", (req, res) => {});
-
+app.post("/users/register", (req, res) => {
+  User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
+  }).then(user => res.redirect("/"));
+});
 //登入
 app.get("/users/login", (req, res) => {
   res.render("login");
