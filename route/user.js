@@ -2,6 +2,7 @@
 
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 const db = require("../models");
 const User = db.User;
 
@@ -48,9 +49,19 @@ router.post("/register", (req, res) => {
 router.get("/login", (req, res) => {
   res.render("login");
 });
-router.post("/login", (req, res) => {});
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/users/login"
+  })(req, res, next);
+});
 
 //登出====================================
-router.get("/logout", (req, res) => {});
+router.get("/logout", (req, res) => {
+  req.logOut();
+  console.log("系統訊息|你已經登出");
+  req.flash("successMessage", "系統訊息|你已經登出");
+  res.redirect("/users/login");
+});
 
 module.exports = router;
