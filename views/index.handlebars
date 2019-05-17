@@ -1,10 +1,37 @@
 <div class="container mt-5">
-    <div class="row ">
-        <div class="card m-auto col-5">
-            <p class="text-center font-weight-bold mt-3">首頁</p>
-            <div class="card-body">
+    <div class="row">
+        <div class="col-10 m-auto">
 
+            <div class="row btns">
+                {{!-- 按鈕群組 --}}
+                <div class="col-4">
+                    <a href="/todos/create" class="btn btn-success">新增</a>
+                </div>
+            </div>
+            <div class="row mt-3">
+                {{!-- 代辦清單 --}}
+                {{#each data}}
+                <div class="list col-12">
+                    <div class="row">
+                        <div class="list_record col-8 pt-2">
+                            <input type="checkbox" class='ml-3' {{#if this.done}}checked{{/if}}disabled>
+                            <p class="font-weight-bold  d-inline-block">{{this.name}}</p>
+                        </div>
+                        <div class="list_btns col-4">
+                            <div class="row">
+                                <a href="/todos/detail/{{this.id}}"
+                                    class="btn btn-primary text-capitalize  mr-1 col">detail</a>
+                                <a href="/todos/edit/{{this.id}}"
+                                    class="btn btn-warning  text-capitalize  mr-1 col">edit</a>
+                                <a href="/todos/delete/{{this.id}}"
+                                    class="btn btn-danger  text-capitalize  mr-1  col">delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
+
 </div>

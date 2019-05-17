@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div class="row ">
+        <div class="card m-auto col-5">
+            <p class="text-center font-weight-bold mt-3">新增代辦</p>
+            <div class="card-body">
+                <form action="/todos/create" method="post">
+                    <input type="text" id="name" name="user_id" class="form-control" value="{{user.id}}" disabled>
+
+                    <div class="form-group">
+                        <label class="" for="name">代辦事項: </label>
+                        <input type="text" id="name" name="name" class="form-control">
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block">新增</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

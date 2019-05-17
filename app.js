@@ -40,6 +40,9 @@ app.use(methodOverride("_method"));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passport")(passport);
+
+//flash
+app.use(flash());
 //自建中介曾
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
@@ -52,6 +55,7 @@ app.use((req, res, next) => {
 
 //路由區
 app.use("/users", require("./route/user"));
+app.use("/todos", require("./route/todo"));
 app.get("/", (req, res) => {
   res.render("index");
 });
