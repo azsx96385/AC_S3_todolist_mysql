@@ -34,29 +34,9 @@ app.use(bdParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 //路由區
+app.use("/users", require("./route/user"));
 //[首頁路由]-------------------------------------
 
 app.get("/", (req, res) => {
   res.render("index");
 });
-//[註冊登入路由]-------------------------------------
-
-//註冊
-app.get("/users/register", (req, res) => {
-  res.render("register");
-});
-app.post("/users/register", (req, res) => {
-  User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
-  }).then(user => res.redirect("/"));
-});
-//登入
-app.get("/users/login", (req, res) => {
-  res.render("login");
-});
-app.post("/users/login", (req, res) => {});
-
-//登出
-app.get("/users/logout", (req, res) => {});
