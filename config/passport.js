@@ -58,7 +58,6 @@ module.exports = passport => {
         //驗證email，存在與否，有-登入處理，沒有-新建後登入
         User.findOne({ where: { email: profile._json.email } })
           .then(userdata => {
-            console.log("userdata", userdata);
             if (!userdata) {
               //無使用者-新建用戶
               //亂數密碼

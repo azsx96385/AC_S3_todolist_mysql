@@ -57,18 +57,37 @@ app.use((req, res, next) => {
   res.locals.successMessage = req.flash("successMessage");
   next();
 });
+//=================================================================
+//debug 中介曾 //-2019-5-17 18:51:12 | GET from / | total time: 8ms
+app.use((req, res, next) => {
+  let date = new Date();
+  let year = date.getFullYear();
+  let month = date.getMonth();
+  let day = date.getDay();
+  let hour = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
 
-// //debug 中介曾
-// app.use((req, res, next) => {
-//   // if (req) {
-//   //   console.log("req", Date.now());
-//   // }
-//   if (res) {
-//     console.log("res", res);
-//   }
+  if (req) {
+    return date.getMilliseconds();
+  }
+  if (res) {
+    return date.getMilliseconds();
+  }
+  let httpMethod = req.method;
+  let url = req.url;
+  console.log(
+    `${year}-${month}-${day} ${hour}:${min}:${sec} | ${httpMethod} from ${url} | total time: `
+  );
+  console.log(req);
 
-//   next();
-// });
+  // let min=;
+  // let sec=;
+  // let minsec=;
+  next();
+});
+
+//=================================================================
 
 //路由區
 app.use("/", require("./route/home"));
