@@ -1,14 +1,15 @@
 const router = require("express").Router();
+const { Authenticated } = require("../config/auth");
 const db = require("../models");
 const Todo = db.Todo;
 const User = db.Todo;
 
 //[create]==============================
-router.get("/create", (req, res) => {
+router.get("/create", Authenticated, (req, res) => {
   res.render("create");
 });
 
-router.post("/create", (req, res) => {
+router.post("/create", Authenticated, (req, res) => {
   let { name, UserId } = req.body;
   let newtodo = new Todo({ name, UserId });
   console.log(req.body);
@@ -22,7 +23,7 @@ router.post("/create", (req, res) => {
     });
 });
 //[detail]==============================
-router.get("/detail/:id", (req, res) => {
+router.get("/detail/:id", Authenticated, (req, res) => {
   User.findByPk(req.user.id)
     .then(userdata => {
       if (!userdata) throw new Error("user not found");
@@ -41,7 +42,7 @@ router.get("/detail/:id", (req, res) => {
 });
 
 //[edit]==============================
-router.get("/edit/:id", (req, res) => {
+router.get("/edit/:id", Authenticated, (req, res) => {
   User.findByPk(req.user.id)
     .then(userdata => {
       if (!userdata) throw new Error("user not found");
@@ -59,7 +60,7 @@ router.get("/edit/:id", (req, res) => {
       console.log(todo.done, "todo.done,");
     });
 });
-router.post("/edit/:id", (req, res) => {
+router.post("/edit/:id", Authenticated, (req, res) => {
   User.findByPk(req.user.id)
     .then(userdata => {
       if (!userdata) throw new Error("user not found");
@@ -81,7 +82,7 @@ router.post("/edit/:id", (req, res) => {
 });
 
 //[delete]==============================
-router.get("/delete/:id", (req, res) => {
+router.get("/delete/:id", Authenticated, (req, res) => {
   User.findByPk(req.user.id)
     .then(user => {
       if (!user) throw new Error("user not found");

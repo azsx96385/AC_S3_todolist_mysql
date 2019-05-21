@@ -1,10 +1,11 @@
 //首頁路由
 const router = require("express").Router();
+const { Authenticated } = require("../config/auth");
 const db = require("../models");
 const Todo = db.Todo;
 const User = db.User;
 
-router.get("/", (req, res) => {
+router.get("/", Authenticated, (req, res) => {
   User.findByPk(req.user.id)
     .then(user => {
       if (!user) throw new Error("user not found");

@@ -21,6 +21,11 @@ app.listen(process.env.PORT || 3000, () => {
   console.log("App is running");
 });
 
+//.env
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 //session
 app.use(
   session({ secret: "okokok", resave: "false", saveUninitialized: "false" })
@@ -68,4 +73,5 @@ app.use((req, res, next) => {
 //路由區
 app.use("/", require("./route/home"));
 app.use("/users", require("./route/user"));
+app.use("/auth", require("./route/auth"));
 app.use("/todos", require("./route/todo"));
