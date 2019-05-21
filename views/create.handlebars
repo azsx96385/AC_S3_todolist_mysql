@@ -4,7 +4,7 @@
             <p class="text-center font-weight-bold mt-3">新增代辦</p>
             <div class="card-body">
                 <form action="/todos/create" method="post">
-                    <input type="text" id="name" name="user_id" class="form-control" value="{{user.id}}" disabled>
+                    <input type="hidden" id="name" name="UserId" class="form-control" value="{{user.id}}">
 
                     <div class="form-group">
                         <label class="" for="name">代辦事項: </label>

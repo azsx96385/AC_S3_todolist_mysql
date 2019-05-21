@@ -53,9 +53,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// //debug 中介曾
+// app.use((req, res, next) => {
+//   // if (req) {
+//   //   console.log("req", Date.now());
+//   // }
+//   if (res) {
+//     console.log("res", res);
+//   }
+
+//   next();
+// });
+
 //路由區
+app.use("/", require("./route/home"));
 app.use("/users", require("./route/user"));
 app.use("/todos", require("./route/todo"));
-app.get("/", (req, res) => {
-  res.render("index");
-});

@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <div class="row ">
+        <div class="card m-auto col-5">
+            <p class="text-center font-weight-bold mt-3">修改頁面</p>
+            <div class="card-body">
+                <p class="font-weight-bold font-capitalize">hello ! {{user.name}}</p>
+                <form method="post">
+
+
+
+                    {{!-- task name --}}
+                    <div class="form-group">
+                        <label class="" for="name">任務名稱: </label>
+                        <input type="text" class="form-control" value="{{todoName}}" disabled>
+                    </div>
+                    {{!-- done status --}}
+                    <div class="form-group">
+                        <label class="" for="name">完成狀態: </label>
+                        <input type="checkbox" class="form-control" {{#if todoDone}}checked{{/if}} disabled>
+                    </div>
+                    {{!-- update time --}}
+                    <div class="form-group">
+                        <label class="" for="name">更新日期: </label>
+                        <input type="text" class="form-control" value="{{ todoUpdated}}" disabled>
+                    </div>
+
+
+                    <a href="/todos/edit/{{todoId}}" class="btn  btn-success mr-3 ">修改</a>
+                    <a href="/" class="btn    btn-primary  ">返回</a>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

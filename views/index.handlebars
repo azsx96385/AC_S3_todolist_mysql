@@ -10,11 +10,11 @@
             </div>
             <div class="row mt-3">
                 {{!-- 代辦清單 --}}
-                {{#each data}}
+                {{#each todos}}
                 <div class="list col-12">
                     <div class="row">
                         <div class="list_record col-8 pt-2">
-                            <input type="checkbox" class='ml-3' {{#if this.done}}checked{{/if}}disabled>
+                            <input type="checkbox" class='ml-3' {{#if this.done}}checked{{/if}} disabled>
                             <p class="font-weight-bold  d-inline-block">{{this.name}}</p>
                         </div>
                         <div class="list_btns col-4">

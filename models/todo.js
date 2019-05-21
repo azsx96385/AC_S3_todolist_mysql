@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     "Todo",
     {
       name: DataTypes.STRING,
-      done: DataTypes.BOOLEAN
+      done: DataTypes.BOOLEAN,
+      UserId: DataTypes.INTEGER
     },
     {}
   );
